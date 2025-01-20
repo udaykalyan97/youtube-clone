@@ -1,0 +1,53 @@
+[
+    {
+      "user": "64b8b7a2d8f7a86d0f9e4d7e",
+      "title": "Exploring the Beauty of Nature",
+      "description": "A breathtaking journey through the most stunning natural landscapes around the world.",
+      "videoLink": "https://example.com/videos/nature-beauty",
+      "thumbnail": "https://example.com/thumbnails/nature.jpg",
+      "videoType": "Nature",
+      "like": 230,
+      "dislike": 12,
+    },
+    {
+      "user": "64b8b7a2d8f7a86d0f9e4d7f",
+      "title": "Mastering JavaScript in 2025",
+      "description": "A complete guide to becoming proficient in JavaScript, including ES6+ features.",
+      "videoLink": "https://example.com/videos/js-masterclass",
+      "thumbnail": "https://example.com/thumbnails/javascript.jpg",
+      "videoType": "Education",
+      "like": 540,
+      "dislike": 24,
+    },
+    {
+      "user": "64b8b7a2d8f7a86d0f9e4d80",
+      "title": "Top 10 Gaming Moments of 2024",
+      "description": "Relive the most epic gaming moments from the past year!",
+      "videoLink": "https://example.com/videos/gaming-moments",
+      "thumbnail": "https://example.com/thumbnails/gaming.jpg",
+      "videoType": "Gaming",
+      "like": 870,
+      "dislike": 42,
+    },
+    {
+      "user": "64b8b7a2d8f7a86d0f9e4d81",
+      "title": "Coke Studio Season 15 Highlights",
+      "description": "Experience the magic of Coke Studio with the best performances from Season 15.",
+      "videoLink": "https://example.com/videos/coke-studio",
+      "thumbnail": "https://example.com/thumbnails/coke-studio.jpg",
+      "videoType": "Music",
+      "like": 1200,
+      "dislike": 18,
+    },
+    {
+      "user": "64b8b7a2d8f7a86d0f9e4d82",
+      "title": "The Future of Artificial Intelligence",
+      "description": "A deep dive into the advancements in AI and what the future holds.",
+      "videoLink": "https://example.com/videos/future-ai",
+      "thumbnail": "https://example.com/thumbnails/ai.jpg",
+      "videoType": "Technology",
+      "like": 760,
+      "dislike": 33,
+    }
+  ]
+  
