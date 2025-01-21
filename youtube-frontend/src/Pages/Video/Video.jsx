@@ -76,11 +76,72 @@ const Video = ({sideNavbar}) => {
         }
     };
 
+
+
+
+
+
+
+    const handleEdit = (comment) => {
+        const updatedMessage = prompt('Edit your comment:', comment.message);
+        if (updatedMessage && updatedMessage !== comment.message) {
+            updateComment(comment._id, updatedMessage);
+        }
+    };
+    
+    
+    const updateComment = async (commentId, updatedMessage) => {
+        try {
+            const response = await axios.put(
+                `http://localhost:4000/commentApi/comment/${commentId}`,
+                { message: updatedMessage },
+                { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+            );
+            console.log('Comment updated successfully:', response.data.comment);
+            
+        } catch (error) {
+            console.error('Error updating comment:', error);
+        }
+    };
+    
+    
+    const handleDelete = async (commentId) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this comment?');
+        if (confirmDelete) {
+            try {
+                const response = await axios.delete(
+                    `http://localhost:4000/commentApi/comment/${commentId}`,
+                    { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+                );
+                console.log('Comment deleted successfully.');
+            } catch (error) {
+                console.error('Error deleting comment:', error);
+            }
+        }
+    };
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     useEffect(() => {
         fetchVideoById();
         getCommentByVideoId();
         fetchVideos();
-    }, [navigate]);
+    }, [id, navigate]);
+    
 
     return (
         <>
@@ -134,7 +195,10 @@ const Video = ({sideNavbar}) => {
                             This is a beginner-friendly tutorial on JavaScript, covering the basics of the language to help you get started with programming.
                         </p>
                     </div>
-
+ 
+ 
+ 
+ {/* Comments */}
                     <div className="mt-6">
                         <div className="text-white mb-4">
                             {comments.length} Comments
@@ -164,7 +228,7 @@ const Video = ({sideNavbar}) => {
                             </div>
                         </div>
 
-                        <div className="space-y-4">
+                        {/* <div className="space-y-4">
                             {comments.map((item, index) => (
                                 <div key={index} className="flex space-x-3">
                                     <img className="w-8 h-8 rounded-full" src={item?.user?.profilePic} alt="User-Profile-Pic" />
@@ -177,9 +241,55 @@ const Video = ({sideNavbar}) => {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
+
+
+
+<div className="space-y-4">
+    {comments.map((item, index) => (
+        <div key={index} className="flex space-x-3">
+            <img
+                className="w-8 h-8 rounded-full"
+                src={item?.user?.profilePic}
+                alt="User-Profile-Pic"
+            />
+            <div className="flex-1">
+                <div className="flex justify-between text-sm text-white">
+                    <span>{item?.user?.channelName}</span>
+                    <span>{item?.createdAt.slice(0, 10)}</span>
+                </div>
+                <div className="text-gray-300">{item?.message}</div>
+                {/* Add buttons for editing and deleting */}
+                <div className="mt-2 flex space-x-4 text-sm text-gray-400">
+                    <button
+                        onClick={() => handleEdit(item)}
+                        className="hover:text-blue-500 transition"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        onClick={() => handleDelete(item._id)}
+                        className="hover:text-red-500 transition"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    ))}
+</div>
+
+
+
+
                     </div>
                 </div>
+
+
+
+
+
+
 
                 <div className="w-[350px] flex flex-col space-y-4 mt-6 md:mt-0">
                     <h2 className="text-lg font-bold text-white mb-4">Up Next</h2>

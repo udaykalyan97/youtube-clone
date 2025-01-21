@@ -10,7 +10,7 @@ const app = express();
 const port = 4000;
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://localhost:5174',
     credentials: true
 }))
 
@@ -24,5 +24,5 @@ app.use('/api', videoRouter);
 app.use('/commentApi', commentRouter);
 
 app.listen(port, () => {
-    console.log(`Our backend project is running on Port ${port}`);
+    console.log(`Server is running on Port ${port}`);
 });
