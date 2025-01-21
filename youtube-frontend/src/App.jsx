@@ -28,7 +28,7 @@ function App() {
         <Navbar setSideNavbarFunc={setSideNavbarFunc} sideNavbar={sideNavbar} setSearchResults={setSearchResults} searchResults={searchResults} setSearchQuery={setSearchQuery} searchQuery={searchQuery}/>
         <Routes>
           <Route path="/" element={<Home sideNavbar={sideNavbar} searchResults={searchResults} searchQuery={searchQuery}/>} />
-          <Route path="/watch/:id" element={<Video />} />
+          <Route path="/watch/:id" element={<Video sideNavbar={sideNavbar}/>} />
           <Route path="/user/:id" element={<Profile sideNavbar={sideNavbar} />} />
           <Route path="/:id/upload" element={<VideoUpload />} />
           <Route path="/signUp" element={<SignUp />} />
