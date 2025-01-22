@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faVideo, faPlay, faChevronRight, faAddressBook, faClockRotateLeft, faCirclePlay, faForward, faPlayCircle, faClock, faThumbsUp, faScissors } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 const SideNavbar = ({ sideNavbar }) => {
     return (
@@ -10,17 +11,32 @@ const SideNavbar = ({ sideNavbar }) => {
             {/* Home & Shorts Section */}
             <div className="flex flex-col border-b border-gray-400">
                 <div className="flex flex-col text-white mb-2">
-                    <div className="flex mb-3 items-center cursor-pointer hover:bg-gray-700 p-2 rounded-lg">
+                    {/* Link to Home */}
+                    <Link
+                        to="/"
+                        className="flex mb-3 items-center cursor-pointer hover:bg-gray-700 p-2 rounded-lg"
+                    >
                         <FontAwesomeIcon icon={faHouse} className="mr-3" /> Home
-                    </div>
-                    <div className="flex mb-3 items-center cursor-pointer hover:bg-gray-700 p-2 rounded-lg">
+                    </Link>
+
+                    {/* Link to Shorts */}
+                    <Link
+                        to="/shorts"
+                        className="flex mb-3 items-center cursor-pointer hover:bg-gray-700 p-2 rounded-lg"
+                    >
                         <FontAwesomeIcon icon={faVideo} className="mr-3" /> Shorts
-                    </div>
-                    <div className="flex mb-3 items-center cursor-pointer hover:bg-gray-700 p-2 rounded-lg">
+                    </Link>
+
+                    {/* Link to Subscriptions */}
+                    <Link
+                        to="/subscriptions"
+                        className="flex mb-3 items-center cursor-pointer hover:bg-gray-700 p-2 rounded-lg"
+                    >
                         <FontAwesomeIcon icon={faPlay} className="mr-3" /> Subscriptions
-                    </div>
+                    </Link>
                 </div>
             </div>
+
 
             {/* Your Section */}
             <div className="flex flex-col border-b border-gray-400">

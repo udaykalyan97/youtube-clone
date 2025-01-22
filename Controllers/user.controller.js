@@ -52,3 +52,35 @@ export const signIn = async (req,res)=>{
 export const logout = async(req,res)=>{
     res.clearCookie('token', cookieOptions).json({ message: 'Logged out successfully' });
 }
+
+
+export const updateUser = async (req, res) => {
+    try {
+      const { channelName, about, profilePic, userId } = req.body;
+      let updateFields = {};
+  
+      if (channelName) updateFields.channelName = channelName;
+      if (about) updateFields.about = about;
+      if (profilePic) updateFields.profilePic = profilePic;
+  
+      const updatedUser = await User.findByIdAndUpdate(userId, updateFields, { new: true });
+  
+      if (!updatedUser) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'User updated successfully', data: updatedUser });
+    } catch (error) {
+      res.status(500).json({ error: 'Server error' });
+    }
+  };
+
+
+  export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find({});
+        res.status(200).json({ message: 'All users retrieved successfully', data: users });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};

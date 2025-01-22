@@ -13,6 +13,7 @@ const NavBar = ({ setSideNavbarFunc, sideNavbar, setSearchResults, searchResults
     const [login, setLogin] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("Sign In");
+    
 
     const handleInputChange = (e) => {
         if(e.target.value.length<1) setSearchResults({});
@@ -20,21 +21,24 @@ const NavBar = ({ setSideNavbarFunc, sideNavbar, setSearchResults, searchResults
     };
 
 
-    const handleSearch = async() => {
+    const handleSearch = async () => {
         if (searchQuery.trim() === "") {
-            alert("Please enter a search query.");
-            return;
+          alert("Please enter a search query.");
+          return;
         }
         console.log("Searching for:", searchQuery);
         try {
-            const response = await axios.get(`http://localhost:4000/api/videos/search`, {
-                params: { query: searchQuery },
-            });
-            setSearchResults(response.data); 
+          const response = await axios.get("http://localhost:4000/api/videos/search", {
+            params: { query: searchQuery },
+          });
+      
+          setSearchResults(response.data); // Update search results
         } catch (err) {
-            console.log(err, "Failed to fetch search results. Please try again later.");
+            alert('Query does not match any title or description. Please try a different query.');
+          console.error("Failed to fetch search results. Please try again later.", err);
         }
-    };
+      };
+      
 
     const handleKeyDown = (e) => {
         
@@ -52,9 +56,13 @@ const NavBar = ({ setSideNavbarFunc, sideNavbar, setSearchResults, searchResults
     };
 
     const handleProfile = () => {
+        setNavbarModal(false);  
         let userId = localStorage.getItem("userId");
-        navigate(`/user/${userId}`);
-        setNavbarModal(false);
+        if (userId) {
+            navigate(`/user/${userId}`); 
+        } else {
+            console.error("No userId found in localStorage");
+        }
     };
 
     const setLoginModal = () => {
@@ -91,7 +99,7 @@ const NavBar = ({ setSideNavbarFunc, sideNavbar, setSearchResults, searchResults
             setUserPic(userProfilePic);
             setUsername(localStorage.getItem("username"));
         }
-    },[])
+    },[navbarModal])
 
     return (
         <>
@@ -111,22 +119,6 @@ const NavBar = ({ setSideNavbarFunc, sideNavbar, setSearchResults, searchResults
                         </div>
                     </Link>
                 </div>
-
-                {/* Center Section */}
-                {/* <div className="flex items-center w-1/2 space-x-2">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="flex-grow px-4 py-2 border border-gray-700 rounded-l-full bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 border border-gray-700 rounded-r-full text-white transition-all">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </button>
-                    <button className="ml-2 p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-all">
-                        <FontAwesomeIcon icon={faMicrophone} className="text-white" />
-                    </button>
-                </div> */}
-
 
                 <div className="flex items-center w-1/2 space-x-2">
             <input
@@ -151,7 +143,7 @@ const NavBar = ({ setSideNavbarFunc, sideNavbar, setSearchResults, searchResults
 
                 {/* Right Section */}
                 <div className="flex items-center space-x-4 relative">
-                    <Link to={"/763/upload"}>
+                    <Link to={`/${localStorage.getItem("userId")}/upload`}>
                         <FontAwesomeIcon icon={faVideo} size="lg" className="text-white cursor-pointer" />
                     </Link>
                     <FontAwesomeIcon icon={faBell} size="lg" className="text-white cursor-pointer" />

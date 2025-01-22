@@ -16,14 +16,16 @@ const videoSchema = new mongoose.Schema({
     videoLink:{
         type:String,
         required:true,
+        default:""
     },
     thumbnail:{
         type:String,
         required:true,
+        default:""
     },
     videoType:{
         type:String,
-        default:"All"
+        default:""
     },
     like:{
         type:Number,
