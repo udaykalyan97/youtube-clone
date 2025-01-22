@@ -63,26 +63,19 @@ A feature-rich YouTube clone built using modern web development technologies lik
    cd ../client
    npm install
    ```
-5. Set up the environment variables:
-   - Create a `.env` file in the `server` directory and configure the following:
-     ```env
-     PORT=5000
-     MONGO_URI=your_mongodb_connection_string
-     JWT_SECRET=your_secret_key
-     ```
-6. Run the backend:
+5. Run the backend:
    ```bash
    cd server
    npm start
    ```
-7. Run the frontend:
+6. Run the frontend:
    ```bash
    cd ../client
    npm start
    ```
-8. Open the app in your browser:
+7. Open the app in your browser:
    ```
-   http://localhost:3000
+   http://localhost:4000
    ```
 
 ---
@@ -99,18 +92,6 @@ A feature-rich YouTube clone built using modern web development technologies lik
 
 ## Sample Data
 
-**Sample User Data**:
-```json
-{
-  "userId": "user01",
-  "username": "JohnDoe",
-  "email": "john@example.com",
-  "password": "hashedPassword123",
-  "avatar": "https://example.com/avatar/johndoe.png",
-  "channels": ["channel01"]
-}
-```
-
 **Sample Channel Data**:
 ```json
 {
@@ -118,7 +99,6 @@ A feature-rich YouTube clone built using modern web development technologies lik
   "channelName": "Code with John",
   "owner": "user01",
   "description": "Coding tutorials and tech reviews by John Doe.",
-  "channelBanner": "https://example.com/banners/john_banner.png",
   "subscribers": 5200,
   "videos": ["video01", "video02"]
 }
